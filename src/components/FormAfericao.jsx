@@ -1,4 +1,7 @@
 import { useState } from 'react'
+import { Save } from 'lucide-react'
+import Botao from './ui/Botao.jsx'
+import Campo from './ui/Campo.jsx'
 
 const formInicial = {
   sistolica: '',
@@ -57,47 +60,37 @@ export default function FormAfericao({ onSalvar, desabilitado }) {
       </p>
 
       <div className="grade-campos">
-        <label>
-          Sistólica
-          <input
-            name="sistolica"
-            type="number"
-            min="70"
-            max="250"
-            placeholder="120"
-            value={form.sistolica}
-            onChange={atualizarCampo}
-            disabled={desabilitado}
-          />
-        </label>
-        <label>
-          Diastólica
-          <input
-            name="diastolica"
-            type="number"
-            min="40"
-            max="150"
-            placeholder="80"
-            value={form.diastolica}
-            onChange={atualizarCampo}
-            disabled={desabilitado}
-          />
-        </label>
-        <label>
-          Pulso (opcional)
-          <input
-            name="pulso"
-            type="number"
-            min="30"
-            max="220"
-            placeholder="72"
-            value={form.pulso}
-            onChange={atualizarCampo}
-            disabled={desabilitado}
-          />
-        </label>
-        <label>
-          Contexto
+        <Campo
+          label="Sistólica"
+          name="sistolica"
+          type="number"
+          min="70"
+          max="250"
+          value={form.sistolica}
+          onChange={atualizarCampo}
+          disabled={desabilitado}
+        />
+        <Campo
+          label="Diastólica"
+          name="diastolica"
+          type="number"
+          min="40"
+          max="150"
+          value={form.diastolica}
+          onChange={atualizarCampo}
+          disabled={desabilitado}
+        />
+        <Campo
+          label="Pulso (opcional)"
+          name="pulso"
+          type="number"
+          min="30"
+          max="220"
+          value={form.pulso}
+          onChange={atualizarCampo}
+          disabled={desabilitado}
+        />
+        <Campo label="Contexto">
           <select
             name="contexto"
             value={form.contexto}
@@ -109,16 +102,14 @@ export default function FormAfericao({ onSalvar, desabilitado }) {
             <option value="esforco">Após esforço</option>
             <option value="outro">Outro</option>
           </select>
-        </label>
+        </Campo>
       </div>
 
-      {erro && <p className="erro">{erro}</p>}
+      {erro ? <p className="erro">{erro}</p> : null}
 
-      <button type="submit" className="botao-principal" disabled={desabilitado}>
+      <Botao type="submit" icone={Save} disabled={desabilitado}>
         Salvar neste paciente
-      </button>
+      </Botao>
     </form>
   )
 }
-
-
